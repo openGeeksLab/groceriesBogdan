@@ -9,11 +9,11 @@ import {
 import { Icon } from 'native-base';
 
 
-
+// its editlistitem or listitem ??
 const ListItem = props => {
 
   const onDelete = () => {
-    props.onDelete(props.index)
+    props.onDelete(props.index) // ; missed
   }
 
   return (

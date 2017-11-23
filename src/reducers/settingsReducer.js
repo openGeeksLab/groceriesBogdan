@@ -1,5 +1,3 @@
-//import { ADD_LIST } from '../actions';
-
 const initialState = {
   theme: 'White',
   fontSize: 15,

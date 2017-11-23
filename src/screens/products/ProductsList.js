@@ -18,6 +18,9 @@ class ProductsList extends Component {
     super(props);
 
     this.productsList = this.props.lists[this.props.navigation.state.params.indexList].products;
+    // get this data through connect((state, props) => ({
+    // products: state.lists[props.navigation.state.params.indexList].products
+    //})) in containers
   }
 
 

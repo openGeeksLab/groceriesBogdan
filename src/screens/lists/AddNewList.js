@@ -70,7 +70,7 @@ export default class AddNewList extends Component {
            <Input
             placeholder="List Name..."
             maxLength={20}
-            autoFocus={true}
+            autoFocus={true} // use autoFocus without ={true}
             onSubmitEditing={this.onSubmit}
             returnKeyType={'done'}
             onChangeText={(listName) => this.setState({listName})}

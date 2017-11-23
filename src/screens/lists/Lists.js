@@ -14,6 +14,7 @@ class Lists extends Component {
   });
 
   render() {
+    // use destructing const { lists } = this.props;
     return (
       <Container>
         <Header>
@@ -37,7 +38,7 @@ class Lists extends Component {
               key={index}
               index={index}
               list={list}
-              navigation={this.props.navigation}
+              navigation={this.props.navigation} // dont pass navigation, pass only function which navigate to specific screen
             />
           )) : <Title style={styles.title}>No Lists</Title>}
         </Content>

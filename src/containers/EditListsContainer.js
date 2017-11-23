@@ -13,3 +13,4 @@ const mapDispatchToProps = dispatch => ({
 const EditListsContainer = connect(mapStateToProps, mapDispatchToProps)(EditLists);
 
 export default EditListsContainer;
+//see AddNewListContainer comment

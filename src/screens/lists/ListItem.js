@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { Icon } from 'native-base';
-
+// useseless lines
 
 
 const ListItem = props => {

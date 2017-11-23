@@ -2,8 +2,8 @@ import { ADD_LIST, DELETE_LIST} from '../actions';
 
 const initialState = [
   {
-    listName: 'First List',
-    listId: 0,
+    listName: 'First List', // name
+    listId: 0, // id
     products: [
       {
         id: 0,
@@ -61,7 +61,7 @@ const listsReducer = (state=initialState, action = {}) => {
       }]
     case DELETE_LIST: {
       const newState = [...state];
-      newState.splice(action.listId, 1)
+      newState.splice(action.listId, 1); // USE [].filter instead of [].splice
       return newState
     }
     default:

@@ -13,6 +13,7 @@ class ProductItem extends Component {
   }
 
   render() {
+    // destructor here
     return (
       <View style={styles.container}>
          <Text style={styles.productTitle}>{this.props.productName}</Text>
@@ -41,7 +42,7 @@ const styles = StyleSheet.create({
 });
 
 ProductItem.propTypes = {
-  productName: PropTypes.string
+  productName: PropTypes.string // just name
 }
 
 export default ProductItem;

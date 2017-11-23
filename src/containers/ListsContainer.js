@@ -8,3 +8,4 @@ const mapStateToProps = state => ({
 const ListsContainer = connect(mapStateToProps)(Lists);
 
 export default ListsContainer;
+//see AddNewListContainer comment
