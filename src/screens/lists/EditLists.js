@@ -54,6 +54,9 @@ const styles = StyleSheet.create({
   leftMenuButton: {
     //marginLeft: 5
   },
+  containerstyle: {
+    color: 'red'
+  },
   rightMenuButton: {
     //marginRight: 5
   },
