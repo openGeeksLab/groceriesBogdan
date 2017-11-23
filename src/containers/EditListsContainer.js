@@ -1,4 +1,3 @@
-import React from 'react';
 import { connect } from 'react-redux';
 import EditLists from '../screens/lists/EditLists';
 import { deleteList } from '../actions';

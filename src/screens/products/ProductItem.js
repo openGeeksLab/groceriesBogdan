@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import {
   StyleSheet,
   Text,
-  View,
-  TouchableOpacity
+  View
 } from 'react-native';
 
 
-export default class ProductItem extends Component {
+class ProductItem extends Component {
   constructor(props){
     super(props);
   }
@@ -40,3 +39,9 @@ const styles = StyleSheet.create({
     marginLeft: 5,
   }
 });
+
+ProductItem.propTypes = {
+  productName: PropTypes.string
+}
+
+export default ProductItem;

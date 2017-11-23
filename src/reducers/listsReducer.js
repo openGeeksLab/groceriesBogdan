@@ -23,12 +23,28 @@ const initialState = [
     ]
   },
   {
-    listName: 'Second List',
+    listName: 'Groceries',
     listId: 1,
-    products: []
+    products: [
+      {
+        id: 0,
+        name: "Milk",
+        isBuy: false
+      },
+      {
+        id: 1,
+        name: "Bread",
+        isBuy: false
+      },
+      {
+        id: 2,
+        name: "Sprite",
+        isBuy: false
+      }
+    ]
   },
   {
-    listName: 'Third List',
+    listName: 'Gifts',
     listId: 2,
     products: []
   }

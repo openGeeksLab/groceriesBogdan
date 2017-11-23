@@ -1,29 +1,37 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {
-  ScrollView,
-  Image,
-  Text,
   StyleSheet
 } from 'react-native';
-import { Container, Button, Icon, Content, Title } from 'native-base';
+import { Container, Button, Icon, Content, Title, Header, Left, Right, Body } from 'native-base';
 import EditListItem from './EditListItem';
 
 
 class EditLists extends Component {
-  static navigationOptions = ({ navigation }) => ({
+  static navigationOptions = () => ({
     title: 'Lists',
-    headerBackTitle: null,
-    headerRight: (
-      <Button style={styles.rightMenuButton} transparent onPress={() => navigation.navigate('NewList')}>
-        <Icon name='ios-add' style={styles.headerIcon}/>
-      </Button>
-    )
+    header: null
   });
 
   render() {
     return (
-      <Container style={styles.container}>
-        <Content>
+      <Container>
+        <Header>
+           <Left>
+             <Button style={styles.leftMenuButton} transparent onPress={() => this.props.navigation.navigate('NewList')}>
+               <Icon name='md-add' style={styles.headerIcon}/>
+             </Button>
+           </Left>
+           <Body>
+             <Title>Lists</Title>
+           </Body>
+           <Right>
+             <Button style={styles.rightMenuButton} transparent onPress={() => this.props.navigation.navigate('Lists')}>
+               <Icon name='ios-create-outline' style={styles.headerIcon}/>
+             </Button>
+           </Right>
+         </Header>
+        <Content style={styles.container}>
           {this.props.lists.length > 0 ? this.props.lists.map((list, index) => (
             <EditListItem
               key={index}
@@ -44,14 +52,14 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   leftMenuButton: {
-    marginLeft: 5
+    //marginLeft: 5
   },
   rightMenuButton: {
-    marginRight: 5
+    //marginRight: 5
   },
   headerIcon: {
     color: 'black',
-    fontSize: 30
+    fontSize: 25
   },
   title: {
     fontSize: 25,
@@ -59,5 +67,11 @@ const styles = StyleSheet.create({
     margin: 50
   }
 });
+
+EditLists.propTypes = {
+  navigation: PropTypes.object,
+  lists: PropTypes.array,
+  onDelete: PropTypes.func
+};
 
 export default EditLists;

@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import {
   StyleSheet,
   Text,
@@ -14,7 +15,7 @@ const ListItem = props => {
   const onDelete = () => {
     props.onDelete(props.index)
   }
-  
+
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={onDelete}>
@@ -50,5 +51,12 @@ const styles = StyleSheet.create({
     color: 'red'
   }
 });
+
+ListItem.propTypes = {
+  onDelete: PropTypes.func,
+  navigation: PropTypes.object,
+  index: PropTypes.number,
+  list: PropTypes.object,
+};
 
 export default ListItem;

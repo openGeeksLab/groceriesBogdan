@@ -1,33 +1,37 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {
-  ScrollView,
-  Image,
-  StyleSheet,
-  Text
+  StyleSheet
 } from 'react-native';
-import { Container, Button, Icon, Content, Title } from 'native-base';
+import { Container, Button, Icon, Content, Title, Header, Left, Right, Body } from 'native-base';
 import ListItem from './ListItem';
 
 
 class Lists extends Component {
-  static navigationOptions = ({ navigation }) => ({
+  static navigationOptions = () => ({
     title: 'Lists',
-    headerLeft: (
-      <Button style={styles.leftMenuButton} transparent onPress={() => navigation.navigate('Settings')}>
-        <Icon name='md-settings' style={styles.headerIcon}/>
-      </Button>
-    ),
-    headerRight: (
-      <Button style={styles.rightMenuButton} transparent onPress={() => navigation.navigate('EditLists')}>
-        <Icon name='ios-create-outline' style={styles.headerIcon}/>
-      </Button>
-    )
+    header: null,
   });
 
   render() {
     return (
-      <Container style={styles.container}>
-        <Content>
+      <Container>
+        <Header>
+           <Left>
+             <Button style={styles.leftMenuButton} transparent onPress={() => this.props.navigation.navigate('Settings')}>
+               <Icon name='ios-settings-outline' style={styles.headerIcon}/>
+             </Button>
+           </Left>
+           <Body>
+             <Title>Lists</Title>
+           </Body>
+           <Right>
+             <Button style={styles.rightMenuButton} transparent onPress={() => this.props.navigation.navigate('EditLists')}>
+               <Icon name='ios-create-outline' style={styles.headerIcon}/>
+             </Button>
+           </Right>
+         </Header>
+        <Content style={styles.container}>
           {this.props.lists.length > 0 ? this.props.lists.map((list, index) => (
             <ListItem
               key={index}
@@ -49,10 +53,10 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   leftMenuButton: {
-    marginLeft: 5
+    //marginLeft: 5
   },
   rightMenuButton: {
-    marginRight: 5
+    //marginRight: 5
   },
   headerIcon: {
     color: 'black',
@@ -64,5 +68,10 @@ const styles = StyleSheet.create({
     margin: 50
   }
 });
+
+Lists.propTypes = {
+  navigation: PropTypes.object,
+  lists: PropTypes.array
+}
 
 export default Lists;

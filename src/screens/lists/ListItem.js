@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import {
   StyleSheet,
   Text,
@@ -50,5 +51,11 @@ const styles = StyleSheet.create({
     fontSize: 15
   }
 });
+
+ListItem.propTypes = {
+  index: PropTypes.number,
+  navigation: PropTypes.object,
+  list: PropTypes.object
+};
 
 export default ListItem;
