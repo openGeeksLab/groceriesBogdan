@@ -1,16 +1,12 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import {
   ScrollView,
   Image,
-  Text,
-  View,
-  StyleSheet
+  StyleSheet,
+  Text
 } from 'react-native';
-import { Container, Button, Icon } from 'native-base';
-import ListItem from './ListItem.js';
-
-
+import { Container, Button, Icon, Content, Title } from 'native-base';
+import ListItem from './ListItem';
 
 
 class Lists extends Component {
@@ -23,34 +19,29 @@ class Lists extends Component {
     ),
     headerRight: (
       <Button style={styles.rightMenuButton} transparent onPress={() => navigation.navigate('EditLists')}>
-      <Image style={{height: 20, width: 20}}
-        source={require('../../img/edit.png')}
-      />
+        <Icon name='ios-create-outline' style={styles.headerIcon}/>
       </Button>
     )
   });
 
   render() {
     return (
-      <View style={styles.container}>
-        <ScrollView>
-          {this.props.listsData.map((list, index) => (
+      <Container style={styles.container}>
+        <Content>
+          {this.props.lists.length > 0 ? this.props.lists.map((list, index) => (
             <ListItem
               key={index}
               index={index}
               list={list}
               navigation={this.props.navigation}
             />
-          ))}
-        </ScrollView>
-      </View>
+          )) : <Title style={styles.title}>No Lists</Title>}
+        </Content>
+      </Container>
     );
   }
 }
 
-const mapStateToProps = state => ({
-  listsData: state.listsReducer
-});
 
 const styles = StyleSheet.create({
   container: {
@@ -58,14 +49,20 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   leftMenuButton: {
-    marginLeft: 10
+    marginLeft: 5
   },
   rightMenuButton: {
-    marginRight: 10
+    marginRight: 5
   },
   headerIcon: {
-    color: 'black'
+    color: 'black',
+    fontSize: 25
+  },
+  title: {
+    fontSize: 25,
+    textAlign: 'center',
+    margin: 50
   }
 });
 
-export default connect(mapStateToProps)(Lists);
+export default Lists;

@@ -5,8 +5,8 @@ import { Container, Title, Content } from 'native-base';
 
 export default class AddNewList extends Component {
   static navigationOptions = {
-    title: 'Add List',
-    headerBackTitle: null,
+    title: 'Lists',
+    //headerBackTitle: null,
   };
 
   render() {

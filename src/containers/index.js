@@ -1,16 +1,16 @@
 import { StackNavigator } from 'react-navigation';
-import Lists from '../screens/lists/Lists';
-import AddNewList from '../screens/lists/AddNewList';
-import EditLists from '../screens/lists/EditLists';
+import ListsContainer from './ListsContainer';
+import AddNewListContainer from './AddNewListContainer';
+import EditListsContainer from './EditListsContainer';
 import ProductsList from '../screens/products/ProductsList';
 import Settings from '../screens/Settings';
 
 
 const AppContainer = StackNavigator({
-  Lists: { screen: Lists },
+  Lists: { screen: ListsContainer },
   Settings: {screen: Settings},
-  EditLists: {screen: EditLists},
-  NewList: {screen: AddNewList },
+  EditLists: {screen: EditListsContainer},
+  NewList: {screen: AddNewListContainer },
   ProductsList: {screen: ProductsList}
 });
 

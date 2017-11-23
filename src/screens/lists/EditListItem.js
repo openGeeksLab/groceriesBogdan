@@ -11,18 +11,16 @@ import { Icon } from 'native-base';
 
 const ListItem = props => {
 
-  const onPressList = () => {
-    props.navigation.navigate('ProductsList', {
-      indexList: props.index,
-      titleList: props.list.listName
-    })
+  const onDelete = () => {
+    props.onDelete(props.index)
   }
+  
   return (
-    <View>
-      <TouchableOpacity onPress={onPressList} style={styles.container}>
-        <Text style={styles.listTitle}>{props.list.listName}</Text>
-        <Icon name='arrow-forward' style={styles.icon}/>
+    <View style={styles.container}>
+      <TouchableOpacity onPress={onDelete}>
+        <Icon name='ios-remove-circle' style={styles.icon}/>
       </TouchableOpacity>
+      <Text style={styles.listTitle}>{props.list.listName}</Text>
     </View>
   );
 };
@@ -34,12 +32,12 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
     borderColor: 'grey',
     borderBottomColor: '#ecf0f1',
     borderBottomWidth: 2,
     paddingLeft: 10,
-    paddingRight: 15,
+    paddingRight: 10,
   },
   listTitle: {
     color: 'black',
@@ -47,7 +45,9 @@ const styles = StyleSheet.create({
     marginLeft: 5,
   },
   icon: {
-    fontSize: 15
+    fontSize: 25,
+    marginRight: 5,
+    color: 'red'
   }
 });
 

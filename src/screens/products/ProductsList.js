@@ -20,7 +20,7 @@ class ProductsList extends Component {
   constructor(props){
     super(props);
 
-    this.productsList = this.props.listsData[this.props.navigation.state.params.indexList].products;
+    this.productsList = this.props.lists[this.props.navigation.state.params.indexList].products;
   }
 
 
@@ -42,7 +42,7 @@ class ProductsList extends Component {
 }
 
 const mapStateToProps = state => ({
-  listsData: state.listsReducer
+  lists: state.lists
 });
 
 export default connect(mapStateToProps)(ProductsList);
