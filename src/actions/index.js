@@ -1,15 +1,14 @@
 export const ADD_LIST = 'ADD_LIST';
 export const DELETE_LIST = 'DELETE_LIST';
+const uuidv4 = require('uuid/v4');
 
-let listNextId = 3;
-
-export const addList = (listName) => ({
+export const addList = (name) => ({
   type: ADD_LIST,
-  listName,
-  listId: listNextId++
-})
+  name,
+  id: uuidv4()
+});
 
-export const deleteList = (listId) =>({
+export const deleteList = (id) => ({
   type: DELETE_LIST,
-  listId
-})
+  id
+});

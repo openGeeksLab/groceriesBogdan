@@ -7,10 +7,11 @@
         "react"
     ],
     "extends": [
-        "eslint:recommended",
-        "plugin:react/recommended"
+      "eslint:recommended",
+      "plugin:react/recommended",
+      "rallycoding"
     ],
     "rules": {
-        // overrides
+      "react/require-extension": 0
     }
 }

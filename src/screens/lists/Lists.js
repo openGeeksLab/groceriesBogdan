@@ -3,7 +3,16 @@ import PropTypes from 'prop-types';
 import {
   StyleSheet
 } from 'react-native';
-import { Container, Button, Icon, Content, Title, Header, Left, Right, Body } from 'native-base';
+import {
+  Container,
+  Button,
+  Icon,
+  Content,
+  Title,
+  Header,
+  Left,
+  Right,
+  Body } from 'native-base';
 import ListItem from './ListItem';
 
 
@@ -13,21 +22,34 @@ class Lists extends Component {
     header: null,
   });
 
+  navigateToProducts = (index, name) => {
+    this.props.navigation.navigate('ProductsList', {
+      index,
+      name
+    });
+  }
+
   render() {
     return (
       <Container>
         <Header>
            <Left>
-             <Button style={styles.leftMenuButton} transparent onPress={() => this.props.navigation.navigate('Settings')}>
-               <Icon name='ios-settings-outline' style={styles.headerIcon}/>
+             <Button
+              style={styles.leftMenuButton}
+              transparent onPress={() => this.props.navigation.navigate('Settings')}
+             >
+               <Icon name='ios-settings-outline' style={styles.headerIcon} />
              </Button>
            </Left>
            <Body>
              <Title>Lists</Title>
            </Body>
            <Right>
-             <Button style={styles.rightMenuButton} transparent onPress={() => this.props.navigation.navigate('EditLists')}>
-               <Icon name='ios-create-outline' style={styles.headerIcon}/>
+             <Button
+              style={styles.rightMenuButton}
+              transparent onPress={() => this.props.navigation.navigate('EditLists')}
+             >
+               <Icon name='ios-create-outline' style={styles.headerIcon} />
              </Button>
            </Right>
          </Header>
@@ -37,7 +59,7 @@ class Lists extends Component {
               key={index}
               index={index}
               list={list}
-              navigation={this.props.navigation}
+              navigateToProducts={this.navigateToProducts}
             />
           )) : <Title style={styles.title}>No Lists</Title>}
         </Content>
@@ -45,7 +67,6 @@ class Lists extends Component {
     );
   }
 }
-
 
 const styles = StyleSheet.create({
   container: {
@@ -72,6 +93,6 @@ const styles = StyleSheet.create({
 Lists.propTypes = {
   navigation: PropTypes.object,
   lists: PropTypes.array
-}
+};
 
 export default Lists;

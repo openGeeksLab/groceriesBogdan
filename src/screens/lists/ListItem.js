@@ -8,21 +8,16 @@ import {
 } from 'react-native';
 import { Icon } from 'native-base';
 
-
-
 const ListItem = props => {
-
   const onPressList = () => {
-    props.navigation.navigate('ProductsList', {
-      indexList: props.index,
-      titleList: props.list.listName
-    })
-  }
+    props.navigateToProducts(props.index, props.list.name);
+  };
+
   return (
     <View>
       <TouchableOpacity onPress={onPressList} style={styles.container}>
-        <Text style={styles.listTitle}>{props.list.listName}</Text>
-        <Icon name='arrow-forward' style={styles.icon}/>
+        <Text style={styles.listTitle}>{props.list.name}</Text>
+        <Icon name='arrow-forward' style={styles.icon} />
       </TouchableOpacity>
     </View>
   );

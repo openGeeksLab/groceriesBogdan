@@ -6,10 +6,4 @@ const mapStateToProps = state => ({
   lists: state.lists
 });
 
-const mapDispatchToProps = dispatch => ({
-  onDelete: listId => dispatch(deleteList(listId))
-});
-
-const EditListsContainer = connect(mapStateToProps, mapDispatchToProps)(EditLists);
-
-export default EditListsContainer;
+export default connect(mapStateToProps, { deleteList })(EditLists);

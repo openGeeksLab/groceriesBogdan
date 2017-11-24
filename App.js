@@ -9,7 +9,6 @@ import { Provider } from 'react-redux';
 import store from './src/store';
 import AppContainer from './src/containers';
 
-
 export default class App extends Component<{}> {
   render() {
     return (

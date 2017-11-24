@@ -1,5 +1,3 @@
-//import { ADD_LIST } from '../actions';
-
 const initialState = {
   theme: 'White',
   fontSize: 15,
@@ -8,11 +6,11 @@ const initialState = {
   sync: false
 };
 
-const settingsReducer = (state=initialState, action = {}) => {
+const settingsReducer = (state = initialState, action = {}) => {
   switch (action.type) {
     default:
       return state;
   }
-}
+};
 
 export default settingsReducer;

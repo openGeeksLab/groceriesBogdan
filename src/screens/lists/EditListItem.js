@@ -8,20 +8,17 @@ import {
 } from 'react-native';
 import { Icon } from 'native-base';
 
-
-
-const ListItem = props => {
-
-  const onDelete = () => {
-    props.onDelete(props.index)
-  }
+const EditListItem = props => {
+  const deleteList = () => {
+    props.deleteList(props.list.id);
+  };
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={onDelete}>
-        <Icon name='ios-remove-circle' style={styles.icon}/>
+      <TouchableOpacity onPress={deleteList}>
+        <Icon name='ios-remove-circle' style={styles.icon} />
       </TouchableOpacity>
-      <Text style={styles.listTitle}>{props.list.listName}</Text>
+      <Text style={styles.listTitle}>{props.list.name}</Text>
     </View>
   );
 };
@@ -52,11 +49,11 @@ const styles = StyleSheet.create({
   }
 });
 
-ListItem.propTypes = {
+EditListItem.propTypes = {
   onDelete: PropTypes.func,
   navigation: PropTypes.object,
   index: PropTypes.number,
   list: PropTypes.object,
 };
 
-export default ListItem;
+export default EditListItem;

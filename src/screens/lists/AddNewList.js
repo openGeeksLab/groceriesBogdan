@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {
   StyleSheet,
   Alert,
+  Text
 } from 'react-native';
 import {
   Container,
@@ -13,10 +14,10 @@ import {
   Input,
   Icon,
   Header,
+  Label,
   Left,
   Right,
   Body } from 'native-base';
-
 
 export default class AddNewList extends Component {
   static navigationOptions = () => ({
@@ -24,26 +25,30 @@ export default class AddNewList extends Component {
     header: null
   });
 
-  constructor(props){
+  constructor(props) {
     super(props);
 
     this.state = {
-      listName: ''
+      name: ''
     };
 
     this.onSubmit = this.onSubmit.bind(this);
+    this.onChange = this.onChange.bind(this);
   }
 
   onSubmit() {
-    if (this.state.listName || this.state.listName !== '') {
-      //console.log(this.state.listName)
-      this.props.onAdd(this.state.listName)
-      this.props.navigation.navigate('EditLists');
+    if (this.state.name || this.state.name !== '') {
+      this.props.addList(this.state.name);
+      this.props.navigation.goBack();
     } else {
       Alert.alert(
          'Please Enter List Name...'
-      )
+      );
     }
+  }
+
+  onChange(name) {
+    this.setState({ name });
   }
 
   render() {
@@ -52,7 +57,7 @@ export default class AddNewList extends Component {
        <Header>
         <Left>
           <Button style={styles.leftMenuButton} transparent onPress={this.onSubmit}>
-            <Icon name='md-add' style={styles.headerIcon}/>
+            <Icon name='md-add' style={styles.headerIcon} />
           </Button>
         </Left>
         <Body>
@@ -60,25 +65,30 @@ export default class AddNewList extends Component {
         </Body>
         <Right>
         <Button disabled style={styles.rightMenuButton} transparent>
-          <Icon name='ios-create-outline' style={styles.rightMenuButton}/>
+          <Icon name='ios-create-outline' style={styles.rightMenuButton} />
         </Button>
         </Right>
         </Header>
        <Content style={styles.container}>
          <Title style={styles.title}>Add new list</Title>
-         <Item>
+         <Item style={styles.inputWrap}>
            <Input
-            placeholder="List Name..."
-            maxLength={20}
-            autoFocus={true}
-            onSubmitEditing={this.onSubmit}
-            returnKeyType={'done'}
-            onChangeText={(listName) => this.setState({listName})}
-            value={this.state.listName}
-          />
+              style={styles.input}
+              placeholder="List Name..."
+              maxLength={20}
+              autoFocus
+              onSubmitEditing={this.onSubmit}
+              returnKeyType={'done'}
+              onChangeText={(name) => this.onChange(name)}
+              value={this.state.listName}
+           />
          </Item>
+         <Label style={styles.label}>
+            Characters left
+            <Text style={{ fontWeight: 'bold' }}>{ ` ${20 - this.state.name.length}`}</Text>
+          </Label>
        </Content>
-     </Container>
+    </Container>
     );
   }
 }
@@ -101,10 +111,25 @@ const styles = StyleSheet.create({
   headerIcon: {
     color: 'black',
     fontSize: 25
+  },
+  inputWrap: {
+    marginLeft: 15,
+    marginRight: 30,
+    borderColor: '#000'
+  },
+  input: {
+    fontSize: 20
+  },
+  label: {
+    textAlign: 'right',
+    marginRight: 35,
+    color: '#aaa',
+    fontSize: 13,
+    marginTop: 5
   }
 });
 
 AddNewList.propTypes = {
-  onAdd: PropTypes.func,
+  addList: PropTypes.func,
   navigation: PropTypes.object,
 };

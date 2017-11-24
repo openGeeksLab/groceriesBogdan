@@ -1,72 +1,72 @@
-import { ADD_LIST, DELETE_LIST} from '../actions';
+import { ADD_LIST, DELETE_LIST } from '../actions';
 
 const initialState = [
   {
-    listName: 'First List',
-    listId: 0,
+    name: 'First List',
+    id: 0,
     products: [
       {
         id: 0,
-        name: "First Product",
+        name: 'First Product',
         isBuy: false
       },
       {
         id: 1,
-        name: "Second Product",
+        name: 'Second Product',
         isBuy: false
       },
       {
         id: 2,
-        name: "Third Product",
+        name: 'Third Product',
         isBuy: false
       }
     ]
   },
   {
-    listName: 'Groceries',
-    listId: 1,
+    name: 'Groceries',
+    id: 1,
     products: [
       {
         id: 0,
-        name: "Milk",
+        name: 'Milk',
         isBuy: false
       },
       {
         id: 1,
-        name: "Bread",
+        name: 'Bread',
         isBuy: false
       },
       {
         id: 2,
-        name: "Sprite",
+        name: 'Sprite',
         isBuy: false
       }
     ]
   },
   {
-    listName: 'Gifts',
-    listId: 2,
+    name: 'Gifts',
+    id: 2,
     products: []
   }
 ];
 
 
-const listsReducer = (state=initialState, action = {}) => {
+const listsReducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case ADD_LIST:
       return [...state, {
-        listName: action.listName,
-        listId: action.listId,
+        name: action.name,
+        id: action.id,
         products: []
-      }]
+      }];
+
     case DELETE_LIST: {
-      const newState = [...state];
-      newState.splice(action.listId, 1)
-      return newState
+      return state.filter(item => item.id !== action.id);
     }
+
     default:
       return state;
   }
-}
+};
 
 export default listsReducer;

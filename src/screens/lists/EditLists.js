@@ -6,7 +6,6 @@ import {
 import { Container, Button, Icon, Content, Title, Header, Left, Right, Body } from 'native-base';
 import EditListItem from './EditListItem';
 
-
 class EditLists extends Component {
   static navigationOptions = () => ({
     title: 'Lists',
@@ -14,30 +13,38 @@ class EditLists extends Component {
   });
 
   render() {
+    const { navigation, lists, deleteList } = this.props;
+
     return (
       <Container>
         <Header>
-           <Left>
-             <Button style={styles.leftMenuButton} transparent onPress={() => this.props.navigation.navigate('NewList')}>
-               <Icon name='md-add' style={styles.headerIcon}/>
-             </Button>
-           </Left>
+          <Left>
+            <Button
+              style={styles.leftMenuButton}
+              transparent
+              onPress={() => navigation.navigate('NewList')}
+            >
+              <Icon name='md-add' style={styles.headerIcon} />
+            </Button>
+          </Left>
            <Body>
              <Title>Lists</Title>
            </Body>
            <Right>
-             <Button style={styles.rightMenuButton} transparent onPress={() => this.props.navigation.navigate('Lists')}>
-               <Icon name='ios-create-outline' style={styles.headerIcon}/>
+              <Button
+                style={styles.rightMenuButton}
+                transparent onPress={() => navigation.goBack()}
+              >
+               <Icon name='ios-create-outline' style={styles.headerIcon} />
              </Button>
            </Right>
          </Header>
         <Content style={styles.container}>
-          {this.props.lists.length > 0 ? this.props.lists.map((list, index) => (
+          {lists.length > 0 ? lists.map(list => (
             <EditListItem
-              key={index}
-              index={index}
+              key={list.id}
               list={list}
-              onDelete={this.props.onDelete}
+              deleteList={deleteList}
             />
           )) : <Title style={styles.title}>No Lists</Title>}
         </Content>

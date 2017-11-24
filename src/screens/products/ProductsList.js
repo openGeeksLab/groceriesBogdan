@@ -7,44 +7,40 @@ import {
 } from 'react-native';
 import ProductItem from './ProductItem';
 
-
 class ProductsList extends Component {
-  static navigationOptions = ({ navigation }) => ({
-    title: navigation.state.params.titleList,
+  static navigationOptions = () => ({
     header: null,
   });
 
-  constructor(props){
-    super(props);
-
-    this.productsList = this.props.lists[this.props.navigation.state.params.indexList].products;
-  }
-
-
   render() {
+    const { products, navigation } = this.props;
+
     return (
       <Container>
         <Header>
            <Left>
-             <Button style={styles.leftMenuButton} transparent onPress={() => this.props.navigation.navigate('Lists')}>
-               <Icon name='md-arrow-back' style={styles.headerIcon}/>
-             </Button>
+              <Button
+              style={styles.leftMenuButton}
+              transparent onPress={() => navigation.goBack()}
+              >
+               <Icon name='md-arrow-back' style={styles.headerIcon} />
+              </Button>
            </Left>
            <Body>
-             <Title>{this.props.navigation.state.params.titleList}</Title>
+             <Title>{navigation.state.params.name}</Title>
            </Body>
            <Right>
              <Button style={styles.rightMenuButton} transparent>
-               <Icon name='ios-create-outline' style={styles.headerIcon}/>
+               <Icon name='ios-create-outline' style={styles.headerIcon} />
              </Button>
            </Right>
          </Header>
         <Content style={styles.container}>
-          {this.productsList.length > 0 ? this.productsList.map((product, productIndex) => (
+          {products.length > 0 ? products.map((product, index) => (
             <ProductItem
-              key={productIndex}
-              index={productIndex}
-              productName={product.name}
+              key={index}
+              index={index}
+              name={product.name}
             />
           )) : <Title style={styles.title}>No Items</Title>}
         </Content>
@@ -82,6 +78,6 @@ const mapStateToProps = state => ({
 ProductsList.propTypes = {
   lists: PropTypes.array,
   navigation: PropTypes.object
-}
+};
 
 export default connect(mapStateToProps)(ProductsList);

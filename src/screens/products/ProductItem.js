@@ -6,16 +6,13 @@ import {
   View
 } from 'react-native';
 
-
 class ProductItem extends Component {
-  constructor(props){
-    super(props);
-  }
-
   render() {
+    const { name } = this.props;
+
     return (
       <View style={styles.container}>
-         <Text style={styles.productTitle}>{this.props.productName}</Text>
+         <Text style={styles.productTitle}>{name}</Text>
       </View>
     );
   }
@@ -41,7 +38,7 @@ const styles = StyleSheet.create({
 });
 
 ProductItem.propTypes = {
-  productName: PropTypes.string
-}
+  name: PropTypes.string
+};
 
 export default ProductItem;
