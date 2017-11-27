@@ -1,11 +1,22 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Container, Button, Icon, Content, Title, Header, Left, Right, Body } from 'native-base';
+import {
+  Container,
+  Button,
+  Icon,
+  Content,
+  Title,
+  Header,
+  Left,
+  Footer,
+  Right,
+  Body } from 'native-base';
 import {
   StyleSheet,
 } from 'react-native';
 import ProductItem from './ProductItem';
+import FilterContainer from '../../containers/FilterContainer';
 
 class ProductsList extends Component {
   static navigationOptions = () => ({
@@ -13,7 +24,37 @@ class ProductsList extends Component {
   });
 
   render() {
-    const { products, navigation } = this.props;
+    const { products, filter, navigation } = this.props;
+
+    const renderProducts = () => {
+      if (products.length > 0) {
+        if (filter === 'CART') {
+          return (
+            products.filter(product => !product.isBuy).map((product, index) => (
+              <ProductItem
+                key={index}
+                index={index}
+                name={product.name}
+              />
+            ))
+          );
+        } else {
+          return (
+            products.map((product, index) => (
+              <ProductItem
+                key={index}
+                index={index}
+                name={product.name}
+              />
+            ))
+          );
+        }
+      } else {
+        return (
+          <Title style={styles.title}>No Items</Title>
+        );
+      }
+    };
 
     return (
       <Container>
@@ -36,14 +77,11 @@ class ProductsList extends Component {
            </Right>
          </Header>
         <Content style={styles.container}>
-          {products.length > 0 ? products.map((product, index) => (
-            <ProductItem
-              key={index}
-              index={index}
-              name={product.name}
-            />
-          )) : <Title style={styles.title}>No Items</Title>}
+          {renderProducts()}
         </Content>
+        <Footer style={styles.footer}>
+          <FilterContainer />
+        </Footer>
       </Container>
     );
   }
@@ -68,6 +106,10 @@ const styles = StyleSheet.create({
     fontSize: 25,
     textAlign: 'center',
     margin: 50
+  },
+  footer: {
+    // borderTopWidth: 1,
+    // borderTopColor: 'black' 
   }
 });
 

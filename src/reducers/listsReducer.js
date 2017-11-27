@@ -8,7 +8,7 @@ const initialState = [
       {
         id: 0,
         name: 'First Product',
-        isBuy: false
+        isBuy: true
       },
       {
         id: 1,
@@ -29,12 +29,12 @@ const initialState = [
       {
         id: 0,
         name: 'Milk',
-        isBuy: false
+        isBuy: true
       },
       {
         id: 1,
         name: 'Bread',
-        isBuy: false
+        isBuy: true
       },
       {
         id: 2,
